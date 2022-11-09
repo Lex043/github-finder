@@ -55,7 +55,6 @@ const getRepo = async () => {
         Authorization: `Bearer ${githubToken}`,
       },
     });
-    // console.log(response.data);
     repo.value = response.data;
   } catch (err) {
     console.log(err);

@@ -29,6 +29,8 @@
     </div>
   </section>
 
+  <p v-if="isLoading"><Spinner /></p>
+
   <div class="px-7 text-center mt-[4rem]" v-if="error">
     Oops! Error encountered: {{ error.message }}
   </div>
@@ -69,10 +71,12 @@ const githubToken = import.meta.env.VITE_VUE_APP_GITHUB_TOKEN;
 
 const searchResult = ref("");
 const apiResult = ref({});
+const isLoading = ref(false);
 const error = ref(null);
 
 const fetchRepo = async () => {
   try {
+    isLoading.value = true;
     const response = await githubApi.getData(
       `/search/users?q=${searchResult.value}`,
       {
@@ -81,12 +85,12 @@ const fetchRepo = async () => {
         },
       }
     );
-    // console.log(response.data.items);
+    isLoading.value = false;
     apiResult.value = response.data.items;
     searchResult.value = "";
   } catch (err) {
+    isLoading.value = false;
     error.value = err;
-    // console.log(err);
   }
 };
 
