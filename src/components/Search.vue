@@ -77,6 +77,7 @@ const error = ref(null);
 const fetchRepo = async () => {
   try {
     isLoading.value = true;
+    apiResult.value = "";
     const response = await githubApi.getData(
       `/search/users?q=${searchResult.value}`,
       {
