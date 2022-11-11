@@ -1,7 +1,7 @@
 <template>
   <div class="px-7 w-full mx-auto lg:w-10/12">
     <div class="mb-4">
-      <a :href="'/'" class="btn btn-ghost">Back to Search</a>
+      <router-link to="/" class="btn btn-ghost">Back to Search</router-link>
     </div>
 
     <div class="px-7 text-center mt-[4rem]" v-if="error">
@@ -150,11 +150,10 @@ const getUser = async () => {
         Authorization: `Bearer ${githubToken}`,
       },
     });
-    // console.log(response.data);
+
     profile.value = response.data;
   } catch (err) {
     error.value = err;
-    // console.log(err);
   }
 };
 

@@ -24,6 +24,12 @@ const router = createRouter({
       name: "user",
       component: UserView,
     },
+
+    {
+      path: "/:notFound(.*)*",
+      name: "notFound",
+      redirect: { name: "home" },
+    },
   ],
 });
 
